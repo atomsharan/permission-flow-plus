@@ -24,10 +24,12 @@ const BottomNav = () => {
         </NavLink>
 
         <div className="flex items-center justify-center">
-          <Button variant="hero" aria-label="Open Permission Portal" className="shadow-elegant">
-            <ShieldCheck className="mr-2" />
-            Permission
-          </Button>
+          <NavLink to="/permission">
+            <Button variant="hero" aria-label="Open Permission Portal" className="shadow-elegant">
+              <ShieldCheck className="mr-2" />
+              Permission
+            </Button>
+          </NavLink>
         </div>
 
         <NavLink to="/resources" className={linkCls} aria-label="Resources">

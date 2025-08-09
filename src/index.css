@@ -46,11 +46,14 @@ All colors MUST be HSL.
 
     /* Gradients & shadows */
     --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--brand-teal)));
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(var(--muted)/0.5));
     --shadow-elegant: 0 10px 30px -12px hsl(var(--primary) / 0.25);
     --shadow-glow: 0 0 0 2px hsl(var(--brand-gold) / 0.15), 0 8px 24px -8px hsl(var(--brand-teal) / 0.25);
+    --shadow-professional: 0 4px 20px -4px hsl(var(--primary) / 0.15), 0 2px 8px -2px hsl(var(--primary) / 0.1);
 
     /* Motion */
     --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     /* Sidebar */
     --sidebar-background: 0 0% 98%;
@@ -115,6 +118,17 @@ All colors MUST be HSL.
 
 @layer components {
   .bg-hero-gradient { background-image: var(--gradient-hero); }
+  .bg-card-gradient { background-image: var(--gradient-card); }
   .shadow-elegant { box-shadow: var(--shadow-elegant); }
   .shadow-glow { box-shadow: var(--shadow-glow); }
+  .shadow-professional { box-shadow: var(--shadow-professional); }
+  
+  /* Enhanced transitions */
+  .transition-smooth { transition: var(--transition-smooth); }
+  .transition-bounce { transition: var(--transition-bounce); }
+  
+  /* Professional card styling */
+  .card-professional {
+    @apply rounded-xl border bg-card shadow-professional hover:shadow-elegant transition-smooth;
+  }
 }
