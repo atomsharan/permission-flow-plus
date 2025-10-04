@@ -1,10 +1,15 @@
+import { useState } from "react";
 import TopBar from "@/components/layout/TopBar";
 import BottomNav from "@/components/layout/BottomNav";
-import { Bell, Pin, Calendar, Eye } from "lucide-react";
+import { Bell, Pin, Calendar, Eye, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 
 const Noticeboard = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
+
   const notices = [
     {
       id: 1,
@@ -56,10 +61,20 @@ const Noticeboard = () => {
     }
   };
 
+  const filteredNotices = notices.filter(notice => {
+    const matchesSearch = notice.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         notice.content.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesFilter = !selectedFilter || notice.department === selectedFilter;
+    return matchesSearch && matchesFilter;
+  });
+
+  const pinnedNotices = filteredNotices.filter(notice => notice.pinned);
+  const recentNotices = filteredNotices.filter(notice => !notice.pinned);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: "Digital Noticeboard - Permission Portal+",
+    name: "Notice Board - Permission Portal+",
     description: "View important announcements, deadlines, and updates from your academic institution.",
   };
 
@@ -68,114 +83,139 @@ const Noticeboard = () => {
       <TopBar />
       <main className="container mx-auto flex-1 px-4 pb-24 pt-8">
         <header className="mb-8">
-          <div className="flex items-center gap-3 mb-2">
-            <Bell className="h-6 w-6 text-brand-teal" />
-            <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
-              Digital Noticeboard
+          <div className="flex items-center gap-3 mb-3">
+            <Bell className="h-7 w-7 text-brand-teal" />
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
+              Notice Board
             </h1>
           </div>
-          <p className="text-muted-foreground max-w-2xl">
+          <p className="text-muted-foreground max-w-2xl text-lg">
             Stay updated with important announcements, deadlines, and institutional updates.
           </p>
         </header>
 
         <div className="grid gap-6 lg:grid-cols-4">
           <div className="lg:col-span-3 space-y-6">
+            {/* Search Bar */}
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+              <Input
+                type="search"
+                placeholder="Search notices..."
+                className="pl-10 h-12 text-base"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
+
             {/* Pinned Notices */}
-            <section>
-              <div className="flex items-center gap-2 mb-4">
-                <Pin className="h-5 w-5 text-brand-gold" />
-                <h2 className="text-xl font-medium">Pinned Notices</h2>
-              </div>
-              <div className="space-y-4">
-                {notices.filter(notice => notice.pinned).map((notice) => (
-                  <article key={notice.id} className="rounded-xl border bg-card p-6 shadow-sm hover:shadow-elegant transition-shadow">
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex items-center gap-2">
-                        <Badge className={getPriorityColor(notice.priority)} variant="secondary">
-                          {notice.priority.toUpperCase()}
-                        </Badge>
-                        <Badge variant="outline">{notice.department}</Badge>
-                      </div>
-                      <Pin className="h-4 w-4 text-brand-gold fill-brand-gold" />
-                    </div>
-                    <h3 className="text-lg font-medium mb-2">{notice.title}</h3>
-                    <p className="text-muted-foreground mb-4">{notice.content}</p>
-                    <div className="flex items-center justify-between text-sm text-muted-foreground">
-                      <div className="flex items-center gap-4">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="h-4 w-4" />
-                          {new Date(notice.date).toLocaleDateString()}
+            {pinnedNotices.length > 0 && (
+              <section>
+                <div className="flex items-center gap-2 mb-4">
+                  <Pin className="h-5 w-5 text-brand-gold" />
+                  <h2 className="text-xl font-semibold">Pinned Notices</h2>
+                </div>
+                <div className="space-y-4">
+                  {pinnedNotices.map((notice) => (
+                    <article key={notice.id} className="card-interactive p-6">
+                      <div className="flex items-start justify-between mb-3">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <Badge className={getPriorityColor(notice.priority)} variant="secondary">
+                            {notice.priority.toUpperCase()}
+                          </Badge>
+                          <Badge variant="outline">{notice.department}</Badge>
                         </div>
-                        <div className="flex items-center gap-1">
-                          <Eye className="h-4 w-4" />
-                          {notice.views} views
-                        </div>
+                        <Pin className="h-4 w-4 text-brand-gold fill-brand-gold" />
                       </div>
-                      <Button variant="ghost" size="sm">Read More</Button>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </section>
+                      <h3 className="text-xl font-semibold mb-2">{notice.title}</h3>
+                      <p className="text-muted-foreground mb-4 text-base">{notice.content}</p>
+                      <div className="flex items-center justify-between text-sm text-muted-foreground">
+                        <div className="flex items-center gap-4">
+                          <div className="flex items-center gap-1">
+                            <Calendar className="h-4 w-4" />
+                            {new Date(notice.date).toLocaleDateString()}
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Eye className="h-4 w-4" />
+                            {notice.views} views
+                          </div>
+                        </div>
+                        <Button variant="ghost" size="sm">Read More</Button>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {/* Recent Notices */}
-            <section>
-              <h2 className="text-xl font-medium mb-4">Recent Notices</h2>
-              <div className="space-y-4">
-                {notices.filter(notice => !notice.pinned).map((notice) => (
-                  <article key={notice.id} className="rounded-xl border bg-card p-6 shadow-sm hover:shadow-elegant transition-shadow">
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex items-center gap-2">
-                        <Badge className={getPriorityColor(notice.priority)} variant="secondary">
-                          {notice.priority.toUpperCase()}
-                        </Badge>
-                        <Badge variant="outline">{notice.department}</Badge>
-                      </div>
-                    </div>
-                    <h3 className="text-lg font-medium mb-2">{notice.title}</h3>
-                    <p className="text-muted-foreground mb-4">{notice.content}</p>
-                    <div className="flex items-center justify-between text-sm text-muted-foreground">
-                      <div className="flex items-center gap-4">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="h-4 w-4" />
-                          {new Date(notice.date).toLocaleDateString()}
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Eye className="h-4 w-4" />
-                          {notice.views} views
+            {recentNotices.length > 0 && (
+              <section>
+                <h2 className="text-xl font-semibold mb-4">Recent Notices</h2>
+                <div className="space-y-4">
+                  {recentNotices.map((notice) => (
+                    <article key={notice.id} className="card-interactive p-6">
+                      <div className="flex items-start justify-between mb-3">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <Badge className={getPriorityColor(notice.priority)} variant="secondary">
+                            {notice.priority.toUpperCase()}
+                          </Badge>
+                          <Badge variant="outline">{notice.department}</Badge>
                         </div>
                       </div>
-                      <Button variant="ghost" size="sm">Read More</Button>
-                    </div>
-                  </article>
-                ))}
+                      <h3 className="text-xl font-semibold mb-2">{notice.title}</h3>
+                      <p className="text-muted-foreground mb-4 text-base">{notice.content}</p>
+                      <div className="flex items-center justify-between text-sm text-muted-foreground">
+                        <div className="flex items-center gap-4">
+                          <div className="flex items-center gap-1">
+                            <Calendar className="h-4 w-4" />
+                            {new Date(notice.date).toLocaleDateString()}
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Eye className="h-4 w-4" />
+                            {notice.views} views
+                          </div>
+                        </div>
+                        <Button variant="ghost" size="sm">Read More</Button>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {filteredNotices.length === 0 && (
+              <div className="card-professional p-12 text-center">
+                <Bell className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                <h3 className="text-lg font-medium mb-2">No notices found</h3>
+                <p className="text-muted-foreground">
+                  Try adjusting your search or filters.
+                </p>
               </div>
-            </section>
+            )}
           </div>
 
-          <aside className="space-y-4">
-            <div className="rounded-xl border bg-card p-4 shadow-sm">
-              <h2 className="text-base font-medium mb-3">Quick Filters</h2>
+          <aside className="space-y-6">
+            <div className="card-professional p-5">
+              <h2 className="text-lg font-semibold mb-4">Quick Filters</h2>
               <div className="space-y-2">
-                <Button variant="outline" size="sm" className="w-full justify-start">
-                  Academic Office
-                </Button>
-                <Button variant="outline" size="sm" className="w-full justify-start">
-                  Student Activities
-                </Button>
-                <Button variant="outline" size="sm" className="w-full justify-start">
-                  Library
-                </Button>
-                <Button variant="outline" size="sm" className="w-full justify-start">
-                  Department Notices
-                </Button>
+                {["Academic Office", "Student Activities", "Library", "Computer Science"].map((dept) => (
+                  <Button
+                    key={dept}
+                    variant={selectedFilter === dept ? "default" : "outline"}
+                    size="sm"
+                    className="w-full justify-start"
+                    onClick={() => setSelectedFilter(selectedFilter === dept ? null : dept)}
+                  >
+                    {dept}
+                  </Button>
+                ))}
               </div>
             </div>
 
-            <div className="rounded-xl border bg-card p-4 shadow-sm">
-              <h2 className="text-base font-medium mb-3">Notification Settings</h2>
-              <p className="text-sm text-muted-foreground mb-3">
+            <div className="card-professional p-5">
+              <h2 className="text-lg font-semibold mb-3">Notification Settings</h2>
+              <p className="text-sm text-muted-foreground mb-4">
                 Customize how you receive notice updates
               </p>
               <Button variant="outline" size="sm" className="w-full">

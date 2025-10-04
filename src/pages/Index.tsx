@@ -2,6 +2,7 @@ import TopBar from "@/components/layout/TopBar";
 import BottomNav from "@/components/layout/BottomNav";
 import ProgressTracker from "@/components/features/ProgressTracker";
 import HubGrid from "@/components/features/HubGrid";
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
   const jsonLd = {
@@ -18,11 +19,11 @@ const Index = () => {
     <div className="min-h-screen flex flex-col bg-background">
       <TopBar />
       <main className="container mx-auto flex-1 px-4 pb-24 pt-8">
-        <header className="mb-8">
-          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight">
+        <header className="mb-10">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight bg-hero-gradient bg-clip-text text-transparent mb-4">
             Permission Portal+
           </h1>
-          <p className="mt-3 max-w-2xl text-muted-foreground">
+          <p className="text-lg max-w-2xl text-muted-foreground">
             Replace paper trails with secure, weighted approvals. Student → Mentor → Incharge → HOD → Dean.
           </p>
         </header>
@@ -32,14 +33,33 @@ const Index = () => {
             <ProgressTracker />
             <HubGrid />
           </div>
-          <aside className="space-y-4">
-            <div className="rounded-xl border bg-card p-4 shadow-sm">
-              <h2 className="text-base font-medium mb-2">Notifications</h2>
-              <p className="text-sm text-muted-foreground">You're all caught up. New updates will appear here.</p>
+          <aside className="space-y-6">
+            <div className="card-professional p-5">
+              <h2 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                <div className="h-2 w-2 rounded-full bg-green-500" />
+                Quick Stats
+              </h2>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-muted-foreground">Pending Requests</span>
+                  <span className="text-xl font-bold text-accent">2</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-muted-foreground">Approved This Month</span>
+                  <span className="text-xl font-bold text-brand-teal">12</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-muted-foreground">Response Time</span>
+                  <span className="text-xl font-bold">2.5h</span>
+                </div>
+              </div>
             </div>
-            <div className="rounded-xl border bg-card p-4 shadow-sm">
-              <h2 className="text-base font-medium mb-2">Resources</h2>
-              <p className="text-sm text-muted-foreground">Guides, policies, and templates curated by your institute.</p>
+            <div className="card-professional p-5">
+              <h2 className="text-lg font-semibold mb-3">Resources</h2>
+              <p className="text-sm text-muted-foreground mb-4">Guides, policies, and templates curated by your institute.</p>
+              <Button variant="outline" size="sm" className="w-full">
+                Browse Resources
+              </Button>
             </div>
           </aside>
         </div>

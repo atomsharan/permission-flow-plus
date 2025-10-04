@@ -23,29 +23,44 @@ const dotCls = (s: Step["status"]) =>
 const ProgressTracker = () => {
   return (
     <section aria-labelledby="permission-progress" className="w-full">
-      <div className="rounded-xl border bg-card p-4 shadow-sm">
-        <div className="flex items-center justify-between mb-3">
-          <h2 id="permission-progress" className="text-base font-medium">
-            Permission progress
+      <div className="card-professional p-6">
+        <div className="flex items-center justify-between mb-4">
+          <h2 id="permission-progress" className="text-lg font-semibold">
+            Permission Progress
           </h2>
-          <span className="text-xs text-muted-foreground">Live</span>
+          <div className="flex items-center gap-2">
+            <div className="h-2 w-2 rounded-full bg-brand-teal animate-pulse" />
+            <span className="text-xs font-medium text-brand-teal">Live Tracking</span>
+          </div>
         </div>
-        <ol className="flex items-center gap-3">
+        <ol className="flex items-center gap-2 overflow-x-auto pb-2">
           {steps.map((step, i) => (
-            <li key={step.name} className="flex items-center">
-              <div className="flex items-center gap-2">
+            <li key={step.name} className="flex items-center min-w-fit">
+              <div className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border-2 transition-all ${
+                step.status === "complete" 
+                  ? "bg-brand-teal/10 border-brand-teal shadow-sm" 
+                  : step.status === "current"
+                  ? "bg-accent/10 border-accent shadow-glow animate-pulse"
+                  : "bg-muted/50 border-border"
+              }`}>
                 {step.status === "complete" ? (
                   <CheckCircle2 className={`h-5 w-5 ${dotCls(step.status)}`} />
                 ) : step.status === "current" ? (
-                  <Clock className={`h-5 w-5 ${dotCls(step.status)}`} />
+                  <Clock className={`h-5 w-5 ${dotCls(step.status)} animate-pulse`} />
                 ) : (
-                  <div className={`h-2.5 w-2.5 rounded-full bg-muted`} />
+                  <div className={`h-3 w-3 rounded-full border-2 border-muted-foreground`} />
                 )}
-                <span className="text-sm">{step.name}</span>
+                <span className={`text-sm font-medium ${
+                  step.status === "complete" ? "text-brand-teal" :
+                  step.status === "current" ? "text-accent" :
+                  "text-muted-foreground"
+                }`}>{step.name}</span>
               </div>
               {i < steps.length - 1 && (
-                <ChevronRight className="mx-2 h-4 w-4 text-muted-foreground" />)
-              }
+                <ChevronRight className={`mx-1 h-5 w-5 ${
+                  step.status === "complete" ? "text-brand-teal" : "text-muted-foreground"
+                }`} />
+              )}
             </li>
           ))}
         </ol>

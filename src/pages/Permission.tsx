@@ -80,20 +80,20 @@ const Permission = () => {
     <div className="min-h-screen flex flex-col bg-background">
       <TopBar />
       <main className="container mx-auto flex-1 px-4 pb-24 pt-8">
-        <header className="mb-8">
-          <div className="flex items-center justify-between mb-2">
+        <header className="mb-10">
+          <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-3">
-              <ShieldCheck className="h-6 w-6 text-brand-teal" />
-              <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
+              <ShieldCheck className="h-7 w-7 text-brand-teal" />
+              <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
                 Permission Portal
               </h1>
             </div>
-            <Button variant="hero" className="shadow-elegant">
-              <Plus className="mr-2 h-4 w-4" />
+            <Button variant="premium" size="lg" className="shadow-glow">
+              <Plus className="mr-2 h-5 w-5" />
               New Request
             </Button>
           </div>
-          <p className="text-muted-foreground max-w-2xl">
+          <p className="text-muted-foreground max-w-2xl text-lg">
             Submit and track your permission requests through the institutional hierarchy.
           </p>
         </header>
@@ -108,7 +108,7 @@ const Permission = () => {
           <TabsContent value="my-requests" className="space-y-6">
             <div className="grid gap-6">
               {permissions.map((permission) => (
-                <article key={permission.id} className="rounded-xl border bg-card p-6 shadow-sm hover:shadow-elegant transition-shadow">
+                <article key={permission.id} className="card-interactive p-6">
                   <div className="flex items-start justify-between mb-4">
                     <div>
                       <div className="flex items-center gap-3 mb-2">
@@ -172,10 +172,10 @@ const Permission = () => {
           </TabsContent>
 
           <TabsContent value="pending-approval" className="space-y-6">
-            <div className="rounded-xl border bg-card p-8 text-center shadow-sm">
-              <ShieldCheck className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-              <h3 className="text-lg font-medium mb-2">No Pending Approvals</h3>
-              <p className="text-muted-foreground">
+            <div className="card-professional p-12 text-center">
+              <ShieldCheck className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+              <h3 className="text-xl font-semibold mb-2">No Pending Approvals</h3>
+              <p className="text-muted-foreground text-base">
                 You don't have any requests waiting for your approval at the moment.
               </p>
             </div>
@@ -191,9 +191,9 @@ const Permission = () => {
                 { name: "Resource Booking", description: "Book facilities and equipment", icon: "🏢" },
                 { name: "Study Leave", description: "Academic study leave requests", icon: "🎓" }
               ].map((template, index) => (
-                <div key={index} className="rounded-xl border bg-card p-6 shadow-sm hover:shadow-elegant transition-shadow cursor-pointer">
-                  <div className="text-2xl mb-3">{template.icon}</div>
-                  <h3 className="font-medium mb-2">{template.name}</h3>
+                <div key={index} className="card-interactive p-6 hover-lift">
+                  <div className="text-3xl mb-3">{template.icon}</div>
+                  <h3 className="font-semibold text-lg mb-2">{template.name}</h3>
                   <p className="text-sm text-muted-foreground mb-4">{template.description}</p>
                   <Button variant="outline" size="sm" className="w-full">
                     Use Template
