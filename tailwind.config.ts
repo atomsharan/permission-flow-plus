@@ -63,8 +63,14 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				brand: {
-					teal: 'hsl(var(--brand-teal))',
-					gold: 'hsl(var(--brand-gold))'
+					royal: 'hsl(var(--brand-royal))',
+					'royal-glow': 'hsl(var(--brand-royal-glow))',
+					terracotta: 'hsl(var(--brand-terracotta))',
+					'terracotta-glow': 'hsl(var(--brand-terracotta-glow))',
+					emerald: 'hsl(var(--brand-emerald))',
+					'emerald-glow': 'hsl(var(--brand-emerald-glow))',
+					gold: 'hsl(var(--brand-gold))',
+					'gold-glow': 'hsl(var(--brand-gold-glow))'
 				}
 			},
 			borderRadius: {

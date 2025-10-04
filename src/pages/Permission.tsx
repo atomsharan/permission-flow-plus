@@ -83,7 +83,7 @@ const Permission = () => {
         <header className="mb-10">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-3">
-              <ShieldCheck className="h-7 w-7 text-brand-teal" />
+              <ShieldCheck className="h-7 w-7 text-brand-emerald" />
               <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
                 Permission Portal
               </h1>

@@ -15,9 +15,9 @@ const steps: Step[] = [
 
 const dotCls = (s: Step["status"]) =>
   s === "complete"
-    ? "text-brand-teal"
+    ? "text-brand-emerald"
     : s === "current"
-    ? "text-accent"
+    ? "text-brand-terracotta"
     : "text-muted-foreground";
 
 const ProgressTracker = () => {
@@ -29,8 +29,8 @@ const ProgressTracker = () => {
             Permission Progress
           </h2>
           <div className="flex items-center gap-2">
-            <div className="h-2 w-2 rounded-full bg-brand-teal animate-pulse" />
-            <span className="text-xs font-medium text-brand-teal">Live Tracking</span>
+            <div className="h-2 w-2 rounded-full bg-brand-emerald animate-pulse" />
+            <span className="text-xs font-medium text-brand-emerald">Live Tracking</span>
           </div>
         </div>
         <ol className="flex items-center gap-2 overflow-x-auto pb-2">
@@ -38,9 +38,9 @@ const ProgressTracker = () => {
             <li key={step.name} className="flex items-center min-w-fit">
               <div className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border-2 transition-all ${
                 step.status === "complete" 
-                  ? "bg-brand-teal/10 border-brand-teal shadow-sm" 
+                  ? "bg-brand-emerald/10 border-brand-emerald shadow-sm" 
                   : step.status === "current"
-                  ? "bg-accent/10 border-accent shadow-glow animate-pulse"
+                  ? "bg-brand-terracotta/10 border-brand-terracotta shadow-glow animate-pulse"
                   : "bg-muted/50 border-border"
               }`}>
                 {step.status === "complete" ? (
@@ -51,14 +51,14 @@ const ProgressTracker = () => {
                   <div className={`h-3 w-3 rounded-full border-2 border-muted-foreground`} />
                 )}
                 <span className={`text-sm font-medium ${
-                  step.status === "complete" ? "text-brand-teal" :
-                  step.status === "current" ? "text-accent" :
+                  step.status === "complete" ? "text-brand-emerald" :
+                  step.status === "current" ? "text-brand-terracotta" :
                   "text-muted-foreground"
                 }`}>{step.name}</span>
               </div>
               {i < steps.length - 1 && (
                 <ChevronRight className={`mx-1 h-5 w-5 ${
-                  step.status === "complete" ? "text-brand-teal" : "text-muted-foreground"
+                  step.status === "complete" ? "text-brand-emerald" : "text-muted-foreground"
                 }`} />
               )}
             </li>

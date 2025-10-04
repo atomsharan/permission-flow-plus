@@ -8,6 +8,7 @@ import Noticeboard from "./pages/Noticeboard";
 import Permission from "./pages/Permission";
 import Resources from "./pages/Resources";
 import Account from "./pages/Account";
+import CampusConnect from "./pages/CampusConnect";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/permission" element={<Permission />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/campus-connect" element={<CampusConnect />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

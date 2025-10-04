@@ -8,59 +8,65 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Base surfaces */
-    --background: 0 0% 100%;
-    --foreground: 222 25% 12%;
+    /* Base surfaces - Elegant cream & warm tones */
+    --background: 40 25% 97%;
+    --foreground: 230 20% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 25% 12%;
+    --card-foreground: 230 20% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 25% 12%;
+    --popover-foreground: 230 20% 15%;
 
-    /* Brand palette - Enhanced */
-    --primary: 210 35% 22%;            /* Deeper navy for impact */
-    --primary-foreground: 210 40% 98%;
-    --primary-glow: 210 35% 35%;       /* Lighter navy for effects */
+    /* Brand palette - Rich & Sophisticated */
+    --primary: 245 45% 28%;            /* Deep royal purple */
+    --primary-foreground: 40 50% 98%;
+    --primary-glow: 245 45% 45%;       /* Lighter purple */
 
-    --secondary: 210 20% 95%;
-    --secondary-foreground: 222 25% 12%;
+    --secondary: 40 30% 94%;           /* Warm cream */
+    --secondary-foreground: 230 20% 15%;
 
-    --muted: 210 20% 95%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 40 20% 92%;
+    --muted-foreground: 230 12% 45%;
 
-    --accent: 36 95% 58%;              /* Vibrant gold */
-    --accent-foreground: 222 47% 11%;
-    --accent-glow: 36 95% 70%;         /* Lighter gold for effects */
+    --accent: 25 85% 55%;              /* Rich terracotta/burnt orange */
+    --accent-foreground: 40 50% 98%;
+    --accent-glow: 25 85% 68%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 40 50% 98%;
 
-    --border: 214 25% 88%;
-    --input: 214 25% 88%;
-    --ring: 36 95% 58%;
+    --border: 40 20% 88%;
+    --input: 40 20% 88%;
+    --ring: 245 45% 45%;
 
-    --radius: 0.875rem;
+    --radius: 1rem;
 
-    /* Brand tokens - Enhanced */
-    --brand-teal: 168 60% 51%;         /* Vibrant teal */
-    --brand-teal-glow: 168 60% 65%;    /* Lighter teal */
-    --brand-gold: 36 95% 58%;          /* Vibrant gold */
-    --brand-navy: 210 35% 22%;         /* Deep navy */
+    /* Brand tokens - Luxurious palette */
+    --brand-royal: 245 45% 28%;        /* Deep royal purple */
+    --brand-royal-glow: 245 45% 45%;
+    --brand-terracotta: 25 85% 55%;    /* Rich terracotta */
+    --brand-terracotta-glow: 25 85% 68%;
+    --brand-emerald: 160 65% 42%;      /* Sophisticated emerald */
+    --brand-emerald-glow: 160 65% 55%;
+    --brand-gold: 42 88% 55%;          /* Elegant gold */
+    --brand-gold-glow: 42 88% 70%;
 
     /* Premium gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--brand-navy)), hsl(var(--brand-teal)));
-    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(var(--muted)));
-    --gradient-accent: linear-gradient(135deg, hsl(var(--brand-gold)), hsl(var(--accent-glow)));
-    --gradient-teal: linear-gradient(135deg, hsl(var(--brand-teal)), hsl(var(--brand-teal-glow)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--brand-royal)), hsl(var(--brand-emerald)));
+    --gradient-royal: linear-gradient(135deg, hsl(var(--brand-royal)), hsl(var(--brand-royal-glow)));
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(40 20% 95%));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--brand-terracotta)), hsl(var(--brand-terracotta-glow)));
+    --gradient-emerald: linear-gradient(135deg, hsl(var(--brand-emerald)), hsl(var(--brand-emerald-glow)));
+    --gradient-gold: linear-gradient(135deg, hsl(var(--brand-gold)), hsl(var(--brand-gold-glow)));
     
-    /* Professional shadows */
-    --shadow-sm: 0 2px 8px -2px hsl(var(--primary) / 0.08);
-    --shadow-md: 0 4px 16px -4px hsl(var(--primary) / 0.12);
-    --shadow-elegant: 0 8px 32px -8px hsl(var(--primary) / 0.18);
-    --shadow-glow: 0 0 0 3px hsl(var(--brand-gold) / 0.12), 0 8px 24px -4px hsl(var(--brand-teal) / 0.2);
-    --shadow-professional: 0 4px 20px -4px hsl(var(--primary) / 0.15), 0 2px 8px -2px hsl(var(--primary) / 0.1);
-    --shadow-card-hover: 0 12px 40px -8px hsl(var(--primary) / 0.22);
+    /* Elegant shadows */
+    --shadow-sm: 0 2px 8px -2px hsl(var(--primary) / 0.06);
+    --shadow-md: 0 4px 16px -4px hsl(var(--primary) / 0.1);
+    --shadow-elegant: 0 8px 32px -8px hsl(var(--primary) / 0.15);
+    --shadow-glow: 0 0 0 3px hsl(var(--brand-gold) / 0.1), 0 8px 24px -4px hsl(var(--brand-royal) / 0.2);
+    --shadow-professional: 0 4px 20px -4px hsl(var(--primary) / 0.12), 0 2px 8px -2px hsl(var(--primary) / 0.08);
+    --shadow-card-hover: 0 12px 40px -8px hsl(var(--primary) / 0.18);
 
     /* Motion */
     --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -79,35 +85,35 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222 84% 5%;
-    --foreground: 210 40% 98%;
+    --background: 230 25% 8%;
+    --foreground: 40 50% 98%;
 
-    --card: 222 84% 6.5%;
-    --card-foreground: 210 40% 98%;
+    --card: 230 22% 11%;
+    --card-foreground: 40 50% 98%;
 
-    --popover: 222 84% 6.5%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 230 22% 11%;
+    --popover-foreground: 40 50% 98%;
 
-    --primary: 168 60% 51%;            /* Vibrant teal on dark */
-    --primary-foreground: 210 40% 98%;
-    --primary-glow: 168 60% 65%;
+    --primary: 160 65% 42%;            /* Emerald on dark */
+    --primary-foreground: 40 50% 98%;
+    --primary-glow: 160 65% 55%;
 
-    --secondary: 217 33% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 230 20% 16%;
+    --secondary-foreground: 40 50% 98%;
 
-    --muted: 217 33% 17.5%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 230 20% 16%;
+    --muted-foreground: 230 10% 60%;
 
-    --accent: 36 95% 58%;              /* Vibrant gold */
-    --accent-foreground: 222 47% 11%;
-    --accent-glow: 36 95% 70%;
+    --accent: 25 85% 55%;              /* Rich terracotta */
+    --accent-foreground: 40 50% 98%;
+    --accent-glow: 25 85% 68%;
 
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 63% 45%;
+    --destructive-foreground: 40 50% 98%;
 
-    --border: 217 33% 17.5%;
-    --input: 217 33% 17.5%;
-    --ring: 36 95% 58%;
+    --border: 230 20% 18%;
+    --input: 230 20% 18%;
+    --ring: 160 65% 42%;
 
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -133,9 +139,11 @@ All colors MUST be HSL.
 @layer components {
   /* Gradients */
   .bg-hero-gradient { background-image: var(--gradient-hero); }
+  .bg-royal-gradient { background-image: var(--gradient-royal); }
   .bg-card-gradient { background-image: var(--gradient-card); }
   .bg-accent-gradient { background-image: var(--gradient-accent); }
-  .bg-teal-gradient { background-image: var(--gradient-teal); }
+  .bg-emerald-gradient { background-image: var(--gradient-emerald); }
+  .bg-gold-gradient { background-image: var(--gradient-gold); }
   
   /* Shadows */
   .shadow-sm-custom { box-shadow: var(--shadow-sm); }
