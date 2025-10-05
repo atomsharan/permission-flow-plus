@@ -9,14 +9,14 @@ const BottomNav = () => {
   return (
     <nav className="fixed bottom-0 inset-x-0 z-40 border-t bg-background/95 backdrop-blur-lg supports-[backdrop-filter]:bg-background/80 shadow-elegant">
       <div className="mx-auto max-w-3xl grid grid-cols-5 items-center px-4 py-3">
-        <NavLink to="/" end className={linkCls} aria-label="Home">
+        <NavLink to="/student/dashboard" end className={linkCls} aria-label="Home">
           <div className="flex flex-col items-center gap-1.5 transition-transform hover:scale-110">
             <Home className="h-6 w-6" />
             <span className="text-xs font-medium">Home</span>
           </div>
         </NavLink>
 
-        <NavLink to="/noticeboard" className={linkCls} aria-label="Noticeboard">
+        <NavLink to="/student/noticeboard" className={linkCls} aria-label="Noticeboard">
           <div className="flex flex-col items-center gap-1.5 transition-transform hover:scale-110">
             <Megaphone className="h-6 w-6" />
             <span className="text-xs font-medium">Notices</span>
@@ -24,7 +24,7 @@ const BottomNav = () => {
         </NavLink>
 
         <div className="flex items-center justify-center -mt-4">
-          <NavLink to="/permission">
+          <NavLink to="/student/permission">
             <Button 
               variant="hero" 
               size="lg"
@@ -36,14 +36,14 @@ const BottomNav = () => {
           </NavLink>
         </div>
 
-        <NavLink to="/resources" className={linkCls} aria-label="Resources">
+        <NavLink to="/student/resources" className={linkCls} aria-label="Resources">
           <div className="flex flex-col items-center gap-1.5 transition-transform hover:scale-110">
             <BookOpen className="h-6 w-6" />
             <span className="text-xs font-medium">Learn</span>
           </div>
         </NavLink>
 
-        <NavLink to="/account" className={linkCls} aria-label="Account">
+        <NavLink to="/student/account" className={linkCls} aria-label="Account">
           <div className="flex flex-col items-center gap-1.5 transition-transform hover:scale-110">
             <User className="h-6 w-6" />
             <span className="text-xs font-medium">Account</span>

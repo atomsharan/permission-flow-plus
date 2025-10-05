@@ -20,28 +20,31 @@ import {
 } from "@/components/ui/sheet";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-const TopBar = () => {
+const StaffTopBar = () => {
   const [notifications, setNotifications] = useState([
     {
       id: 1,
-      title: "Permission Approved",
-      description: "Your leave request was approved by Dr. Smith",
-      time: "5 minutes ago",
-      unread: true
+      title: "New Permission Request",
+      description: "John Doe requested leave approval",
+      time: "2 minutes ago",
+      unread: true,
+      priority: "high"
     },
     {
       id: 2,
-      title: "New Notice",
-      description: "Exam schedule has been updated",
-      time: "1 hour ago",
-      unread: true
+      title: "Approval Required",
+      description: "Event approval pending from 3 students",
+      time: "15 minutes ago",
+      unread: true,
+      priority: "high"
     },
     {
       id: 3,
-      title: "Reminder",
-      description: "Submit your assignment by tomorrow",
-      time: "2 hours ago",
-      unread: false
+      title: "Request Approved",
+      description: "Your approval was processed successfully",
+      time: "1 hour ago",
+      unread: false,
+      priority: "normal"
     }
   ]);
 
@@ -49,7 +52,6 @@ const TopBar = () => {
 
   const handleNotificationClick = (id: number) => {
     // Backend-ready: Mark as read via API
-    // await fetch(`/api/notifications/${id}/read`, { method: 'POST' });
     setNotifications(prev => 
       prev.map(n => n.id === id ? { ...n, unread: false } : n)
     );
@@ -76,8 +78,8 @@ const TopBar = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <a href="/student/dashboard" className="font-semibold text-lg">
-            Permission Portal+
+          <a href="/staff/dashboard" className="font-semibold text-lg">
+            Permission Portal+ <span className="text-brand-royal text-sm">Staff</span>
           </a>
         </div>
 
@@ -88,7 +90,7 @@ const TopBar = () => {
                 <Bell className="h-5 w-5" />
                 {unreadCount > 0 && (
                   <Badge 
-                    className="absolute -right-1 -top-1 h-5 w-5 flex items-center justify-center p-0 bg-brand-gold text-white text-xs"
+                    className="absolute -right-1 -top-1 h-5 w-5 flex items-center justify-center p-0 bg-brand-terracotta text-white text-xs"
                   >
                     {unreadCount}
                   </Badge>
@@ -114,7 +116,12 @@ const TopBar = () => {
                           : 'hover:bg-accent/30'
                       }`}
                     >
-                      <h4 className="font-medium text-sm mb-1">{notification.title}</h4>
+                      <div className="flex items-start justify-between mb-1">
+                        <h4 className="font-medium text-sm">{notification.title}</h4>
+                        {notification.priority === "high" && (
+                          <Badge variant="destructive" className="text-xs">High</Badge>
+                        )}
+                      </div>
                       <p className="text-sm text-muted-foreground mb-2">
                         {notification.description}
                       </p>
@@ -135,4 +142,4 @@ const TopBar = () => {
   );
 };
 
-export default TopBar;
+export default StaffTopBar;

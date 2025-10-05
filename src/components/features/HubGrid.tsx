@@ -35,11 +35,9 @@ const HubGrid = () => {
   return (
     <section aria-labelledby="hub" className="w-full">
       <h2 id="hub" className="sr-only">Central hub</h2>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-2">
         <Item title="Community clubs" desc="Manage events, approvals, and members" icon={Users} />
-        <Item title="Assignments" desc="Plan, submit, and track deadlines" icon={FileText} />
-        <Item title="Secure messaging" desc="Private chats for verified users" icon={MessageSquare} />
-        <Item title="Campus Connect" desc="Professional networking & social campus feed" icon={Sparkles} href="/campus-connect" />
+        <Item title="Campus Connect" desc="Connect, network, and engage with campus community" icon={Sparkles} href="/campus-connect" />
       </div>
     </section>
   );
