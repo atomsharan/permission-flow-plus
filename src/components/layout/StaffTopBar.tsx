@@ -78,9 +78,9 @@ const StaffTopBar = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <a href="/staff/dashboard" className="font-semibold text-lg">
+          <span className="font-semibold text-lg">
             Permission Portal+ <span className="text-brand-royal text-sm">Staff</span>
-          </a>
+          </span>
         </div>
 
         <div className="flex items-center gap-2">

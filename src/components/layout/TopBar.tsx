@@ -76,9 +76,9 @@ const TopBar = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <a href="/student/dashboard" className="font-semibold text-lg">
+          <span className="font-semibold text-lg">
             Permission Portal+
-          </a>
+          </span>
         </div>
 
         <div className="flex items-center gap-2">

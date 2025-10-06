@@ -46,7 +46,7 @@ const Index = () => {
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-muted-foreground">Approved This Month</span>
-                  <span className="text-xl font-bold text-brand-teal">12</span>
+                  <span className="text-xl font-bold text-brand-emerald">12</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-muted-foreground">Response Time</span>
